@@ -18,18 +18,20 @@ struct node{
 };
 int print_from_node(struct node* base){
     if(base->next){         
-        printf("%s%s\n",base->cargo," ==> ");
+        printf("%s %s\n",base->cargo," ==> ");
         print_from_node(base->next);
     }
     return 0;
 }
 int main(){
-    struct node* root;
+    struct node* root = (struct node*)malloc(sizeof(struct node));
+    root->cargo = (unsigned char*)malloc(10*sizeof(char));
     unsigned char barset[STRING_LEN+1]; 
     root->cargo = rand_string(STRING_LEN,barset);
     struct node* last = root;
     for(int i = 0 ;i<9;i++){
-        struct node* new;
+        struct node* new = (struct node*)malloc(sizeof(struct node));
+        new->cargo = (unsigned char*)malloc(10*sizeof(char));
         last->next = new;
         unsigned char charset[STRING_LEN+1]; 
         new->cargo = rand_string(STRING_LEN,charset);
