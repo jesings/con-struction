@@ -2,39 +2,45 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 const int STRING_LEN = 10;
-unsigned char* rand_string(int length, unsigned char* charset){
-    srand(time(NULL));    
+unsigned char* rand_string(int length, unsigned char* charset){   
     int i = 0;
     for(;i<length;i++){
-        charset[i]=(unsigned char) (rand()*256);
+        unsigned char aynrand = (unsigned char) (rand()%256);
+        charset[i]=aynrand;
     }
     charset[i] = 0;
-    return (char*) charset;
+    return charset;
 }
 struct node{
     struct node* next;
     unsigned char* cargo;
 };
+struct linked_list{
+    struct node* head;
+    struct node* tail;
+};
 int print_from_node(struct node* base){
     if(base->next){         
         printf("%s %s\n",base->cargo," ==> ");
-        print_from_node(base->next);
+        return print_from_node(base->next);
     }
     return 0;
 }
+struct node* malloc_node(struct node* myn){
+    myn = malloc(sizeof(struct node));
+    unsigned char* chargo = malloc((STRING_LEN+1)*sizeof(char));
+    myn->cargo = rand_string(STRING_LEN,chargo);
+    return myn;
+}
 int main(){
-    struct node* root = (struct node*)malloc(sizeof(struct node));
-    root->cargo = (unsigned char*)malloc(10*sizeof(char));
-    unsigned char barset[STRING_LEN+1]; 
-    root->cargo = rand_string(STRING_LEN,barset);
+    srand(time(NULL));
+    struct node* root = malloc_node(root);
     struct node* last = root;
-    for(int i = 0 ;i<9;i++){
-        struct node* new = (struct node*)malloc(sizeof(struct node));
-        new->cargo = (unsigned char*)malloc(10*sizeof(char));
+    for(int i = 0 ;i<10;i++){
+        struct node* new = malloc_node(new);
         last->next = new;
-        unsigned char charset[STRING_LEN+1]; 
-        new->cargo = rand_string(STRING_LEN,charset);
         last = new;
     }
     last->next = NULL;
