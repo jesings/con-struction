@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <time.h>
-#include <math.h>
+#include "node.h"
+#include "ll2.h"
 const int STRING_LEN = 10;
 unsigned char* rand_string(int length, unsigned char* charset){   
     int i = 0;
@@ -13,21 +13,11 @@ unsigned char* rand_string(int length, unsigned char* charset){
     charset[i] = 0;
     return charset;
 }
-struct node{
-    struct node* next;
-    unsigned char* cargo;
-};
-struct linked_list{
-    struct node* head;
-    struct node* tail;
-};
-int print_from_node(struct node* base){
-    if(base){         
-        printf("%s %s\n",base->cargo," ==> ");
-        return print_from_node(base->next);
-    }
-    return 0;
-}
+//struct linked_list{
+//    struct node* head;
+//    struct node* tail;
+//};
+
 struct node* malloc_node(struct node* myn){
     myn = malloc(sizeof(struct node));
     unsigned char* chargo = malloc((STRING_LEN+1)*sizeof(char));
@@ -44,6 +34,6 @@ int main(){
         last = new;
     }
     last->next = NULL;
-    print_from_node(root);
+    print_ll(root);
     return 0;
 }

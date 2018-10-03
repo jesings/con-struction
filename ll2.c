@@ -1,11 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
-struct node {
-  unsigned char* cargo;
-  struct node* next;
-};
-
+#include "node.h"
 struct node* add(struct node* head, char* str, int i) {
   struct node* n = malloc(sizeof(struct node));
   n->cargo = str;
@@ -21,14 +16,15 @@ struct node* add(struct node* head, char* str, int i) {
   return head;
 }
 
-struct node* remove(struct node* head, int i) {
+struct node* remove_node(struct node* head, int i) {
+  struct node* trash;
   if (i) {
     struct node* tmp = head;
     for (; --i; tmp = tmp->next);
-    struct node* trash = tmp->next;
+    trash = tmp->next;
     tmp->next = tmp->next->next;
   } else {
-    struct node* trash = head;
+    trash = head;
     head = head->next;
   }
   free(trash->cargo);
@@ -47,18 +43,18 @@ int destruct(struct node* head) {
 }
 
 int print_ll(struct node* head) {
-  if (head)
-    print("/n");
+  if (!head)
+    printf("\n");
   else {
-    printf("%s, ", head->cargo);
-    print(head->next);
+    printf("%s->\n", head->cargo);
+    print_ll(head->next);
   }
 }
-int main() {
-  struct node* llist = malloc(sizeof(struct node));
-  char a[] = "aaa";
-  char b[] = "bbb";
-  llist->cargo = a;
-  llist = add(llist, b, 0);
-  print_ll(llist);
-}
+//int main() {
+//  struct node* llist = malloc(sizeof(struct node));
+//  char a[] = "aaa";
+//  char b[] = "bbb";
+//  llist->cargo = a;
+//  llist = add(llist, b, 0);
+//  print_ll(llist);
+//}
