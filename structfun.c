@@ -22,7 +22,7 @@ struct linked_list{
     struct node* tail;
 };
 int print_from_node(struct node* base){
-    if(base->next){         
+    if(base){         
         printf("%s %s\n",base->cargo," ==> ");
         return print_from_node(base->next);
     }
