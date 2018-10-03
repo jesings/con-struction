@@ -17,7 +17,7 @@ struct node{
     unsigned char* cargo;
 };
 int print_from_node(struct node* base){
-    if(base->next){         
+    if(base){         
         printf("%s %s\n",base->cargo," ==> ");
         print_from_node(base->next);
     }
@@ -31,10 +31,8 @@ int main(){
     struct node* last = root;
     for(int i = 0 ;i<9;i++){
         struct node* new = (struct node*)malloc(sizeof(struct node));
-        new->cargo = (unsigned char*)malloc(10*sizeof(char));
+        new->cargo = (unsigned char*)malloc((STRING_LEN+1)*sizeof(char));
         last->next = new;
-        unsigned char charset[STRING_LEN+1]; 
-        new->cargo = rand_string(STRING_LEN,charset);
         last = new;
     }
     last->next = NULL;
