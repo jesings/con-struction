@@ -50,11 +50,3 @@ int print_ll(struct node* head) {
     print_ll(head->next);
   }
 }
-//int main() {
-//  struct node* llist = malloc(sizeof(struct node));
-//  char a[] = "aaa";
-//  char b[] = "bbb";
-//  llist->cargo = a;
-//  llist = add(llist, b, 0);
-//  print_ll(llist);
-//}

@@ -46,15 +46,7 @@ int print_ll(struct node* head) {
   if (!head)
     printf("\n");
   else {
-    printf("%s->", head->cargo);
+    printf("%s->\n", head->cargo);
     print_ll(head->next);
   }
 }
-//int main() {
-//  struct node* llist = malloc(sizeof(struct node));
-//  char a[] = "aaa";
-//  char b[] = "bbb";
-//  llist->cargo = a;
-//  llist = add(llist, b, 0);
-//  print_ll(llist);
-//}

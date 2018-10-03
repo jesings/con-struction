@@ -36,4 +36,11 @@ int main(){
     last->next = NULL;
     print_ll(root);
     return 0;
+    //  struct node* llist = malloc(sizeof(struct node));
+    //  char a[] = "aaa";
+    //  char b[] = "bbb";
+    //  llist->cargo = a;
+    //  llist = add(llist, b, 0);
+    //  print_ll(llist);
+    //}
 }
