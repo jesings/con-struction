@@ -16,8 +16,9 @@ int main(){
     }
     last->next = NULL;
     print_ll(root);
+    destruct(root);
     
-    printf("All star:\n");
+    printf("All Star:\n");
     struct node* ll1;
     int i = 0;
     ll1 = add(root,"Some",i++);
@@ -29,10 +30,19 @@ int main(){
     add(ll1,"roll me",i++)->next = NULL;
     print_ll(ll1);
     
-    printf("All star with every other beat removed:\n");
+    printf("All Star with every other beat removed:\n");
     remove_node(ll1,1);
+    remove_node(ll1,2);
     remove_node(ll1,3);
-    remove_node(ll1,5);
     print_ll(ll1);
+
+    printf("de-structing All Star:\n");
+    destruct(ll1);
+    printf("All Star destructed:\n\n");
+    
+    printf(":\n");
+    printf("And a free parody:\n");
+    
+    printf("Well, the structs start coming and they don't stop coming, pointers and adresses and my program isn't running but the error messages beg to differ judging by the syntax in the function definition \n");
     return 0;
 }
