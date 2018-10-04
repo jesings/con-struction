@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "node.h"
 #include "ll2.h"
+#include "bastrlib.h"
 const int STRING_LEN = 10;
 
 unsigned char* rand_string(int length, unsigned char* charset){   
@@ -16,8 +17,12 @@ unsigned char* rand_string(int length, unsigned char* charset){
 
 struct node* add_rand(struct node* head, int i) {
   unsigned char* chargo = malloc((STRING_LEN+1)*sizeof(char));
-  head = add(head, rand_string(STRING_LEN,chargo), i);
-  return head;
+  return add(head, rand_string(STRING_LEN,chargo), i);
+}
+
+struct node* add_literal(struct node* head, unsigned char* str, int i) {
+  unsigned char* chargo = malloc(bastrlen(str) * sizeof(char));
+  return add(head, bastrcpy(chargo, str), i);
 }
 
 struct node* add(struct node* head, unsigned char* str, int i) {
@@ -26,15 +31,13 @@ struct node* add(struct node* head, unsigned char* str, int i) {
   n->next = NULL;
   if (i) {
     struct node* tmp = head;
-    for (; --i && tmp->next; tmp = tmp->next) printf("%p: %s -> %p\n", tmp, tmp->cargo, tmp->next);
-    printf("%p: %s -> %p\n", tmp, tmp->cargo, tmp->next);
+    for (; --i && tmp->next; tmp = tmp->next);
     n->next = tmp->next;
     tmp->next = n;
   } else {
     n->next = head;
     head = n;
   }
-  printf("  +  %p: %s -> %p\n\n\n", n, n->cargo, n->next);
   return head;
 }
 
