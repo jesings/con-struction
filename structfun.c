@@ -7,21 +7,18 @@
 int main(){
     srand(time(NULL));
     printf("random list:\n");
-    struct node* root;
-    root = add_rand(root,0);
-    struct node* last = root;
-    for(int i = 1 ;i<10;i++){
-        struct node* new = add_rand(root,i);
-        last = new;
+    struct node* root = NULL;
+    for(int i = 0 ;i<10;i++){
+      root = add_rand(root,i);
     }
-    last->next = NULL;
     print_ll(root);
+    printf("destructing\n\n");
     destruct(root);
     
     printf("All Star:\n");
-    struct node* ll1;
+    struct node* ll1 = NULL;
     int i = 0;
-    ll1 = add(root,"Some",i++);
+    ll1 = add(ll1,"Some",i++);
     add(ll1,"body",i++);
     add(ll1,"once",i++);
     add(ll1,"told me",i++);

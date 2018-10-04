@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "node.h"
+#include "ll2.h"
 const int STRING_LEN = 10;
 
 unsigned char* rand_string(int length, unsigned char* charset){   
     int i = 0;
     for(;i<length;i++){
-        unsigned char aynrand = (unsigned char) (rand()%256);
+        unsigned char aynrand = (unsigned char) (rand()%95) + 32;
         charset[i]=aynrand;
     }
     charset[i] = 0;
@@ -22,15 +23,18 @@ struct node* add_rand(struct node* head, int i) {
 struct node* add(struct node* head, unsigned char* str, int i) {
   struct node* n = malloc(sizeof(struct node));
   n->cargo = str;
+  n->next = NULL;
   if (i) {
     struct node* tmp = head;
-    for (; --i && tmp->next; tmp = tmp->next);
+    for (; --i && tmp->next; tmp = tmp->next) printf("%p: %s -> %p\n", tmp, tmp->cargo, tmp->next);
+    printf("%p: %s -> %p\n", tmp, tmp->cargo, tmp->next);
     n->next = tmp->next;
     tmp->next = n;
   } else {
     n->next = head;
     head = n;
   }
+  printf("  +  %p: %s -> %p\n\n\n", n, n->cargo, n->next);
   return head;
 }
 
@@ -50,21 +54,21 @@ struct node* remove_node(struct node* head, int i) {
   return head;
 }
 
-int destruct(struct node* head) {
+struct node* destruct(struct node* head) {
   if(head)
     for (struct node* i = head -> next; i; i = i->next) {
       free(head->cargo);
       free(head);
       head = i;
     }
-  return 0;
+  return NULL;
 }
 
 int print_ll(struct node* head) {
-  if (!head)
-    printf("\n");
-  else {
+  if (head) {
     printf("%s->\n", head->cargo);
     print_ll(head->next);
-  }
+  } else
+    printf("\n");
+  return 0;
 }
