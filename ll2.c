@@ -14,19 +14,8 @@ unsigned char* rand_string(int length, unsigned char* charset){
 }
 
 struct node* add_rand(struct node* head, int i) {
-  struct node* n = malloc(sizeof(struct node));
   unsigned char* chargo = malloc((STRING_LEN+1)*sizeof(char));
-  n->cargo = rand_string(STRING_LEN,chargo);
-  if (i) {
-    struct node* tmp = head;
-    for (; --i && tmp->next; tmp = tmp->next);
-    n->next = tmp->next;
-    tmp->next = n;
-    return tmp;
-  } else {
-    n->next = head;
-    head = n;
-  }
+  head = add(head, rand_string(STRING_LEN,chargo), i);
   return head;
 }
 
@@ -38,7 +27,6 @@ struct node* add(struct node* head, unsigned char* str, int i) {
     for (; --i && tmp->next; tmp = tmp->next);
     n->next = tmp->next;
     tmp->next = n;
-    return n;
   } else {
     n->next = head;
     head = n;
