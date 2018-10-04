@@ -3,44 +3,31 @@
 #include <time.h>
 #include "node.h"
 #include "ll2.h"
-const int STRING_LEN = 10;
-unsigned char* rand_string(int length, unsigned char* charset){   
-    int i = 0;
-    for(;i<length;i++){
-        unsigned char aynrand = (unsigned char) (rand()%256);
-        charset[i]=aynrand;
-    }
-    charset[i] = 0;
-    return charset;
-}
-//struct linked_list{
-//    struct node* head;
-//    struct node* tail;
-//};
 
-struct node* malloc_node(struct node* myn){
-    myn = malloc(sizeof(struct node));
-    unsigned char* chargo = malloc((STRING_LEN+1)*sizeof(char));
-    myn->cargo = rand_string(STRING_LEN,chargo);
-    return myn;
-}
 int main(){
     srand(time(NULL));
-    struct node* root = malloc_node(root);
+    printf("random list:\n")
+    struct node* root;
+    root = add_rand(root,0);
     struct node* last = root;
-    for(int i = 0 ;i<10;i++){
-        struct node* new = malloc_node(new);
-        last->next = new;
+    for(int i = 1 ;i<10;i++){
+        struct node* new = add_rand(root,i);
+        printf("%x\n",new);
         last = new;
     }
     last->next = NULL;
     print_ll(root);
+    
+    struct node* ll1;
+    int i = 0;
+    ll1 = add(root,"Some",i++);
+    add(ll1,"body",i++);
+    add(ll1,"once",i++);
+    add(ll1,"told me",i++);
+    add(ll1,"the world",i++);
+    add(ll1,"was gonna",i++);
+    add(ll1,"roll me",i++)->next = NULL;
+    print_ll(ll1);
+    
     return 0;
-    //  struct node* llist = malloc(sizeof(struct node));
-    //  char a[] = "aaa";
-    //  char b[] = "bbb";
-    //  llist->cargo = a;
-    //  llist = add(llist, b, 0);
-    //  print_ll(llist);
-    //}
 }
