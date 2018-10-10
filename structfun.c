@@ -9,32 +9,25 @@ int main(){
     printf("random list:\n");
     struct node* root = NULL;
     for(int i = 0 ;i<10;i++){
-      root = add_rand(root,i);
+      root = insert_front(root,make_rand());
     }
-    print_ll(root);
+    print_list(root);
     printf("destructing\n\n");
-    destruct(root);
+    free_list(root);
     
     printf("All Star:\n");
     struct node* ll1 = NULL;
     int i = 0;
-    ll1 = add_literal(ll1,"Some",i++);
-    ll1 = add_literal(ll1,"body",i++);
-    ll1 = add_literal(ll1,"once",i++);
-    ll1 = add_literal(ll1,"told me",i++);
-    ll1 = add_literal(ll1,"the world",i++);
-    ll1 = add_literal(ll1,"was gonna",i++);
-    ll1 = add_literal(ll1,"roll me",i++);
-    print_ll(ll1);
-    
-    printf("All Star with every other beat removed:\n");
-    remove_node(ll1,1);
-    remove_node(ll1,2);
-    remove_node(ll1,3);
-    print_ll(ll1);
+    ll1 = insert_front(ll1,make_literal("roll me"));
+    ll1 = insert_front(ll1,make_literal("the world"));
+    ll1 = insert_front(ll1,make_literal("told me"));
+    ll1 = insert_front(ll1,make_literal("once"));
+    ll1 = insert_front(ll1,make_literal("body"));
+    ll1 = insert_front(ll1,make_literal("Some"));
+    print_list(ll1);
 
     printf("de-structing All Star:\n");
-    destruct(ll1);
+    free_list(ll1);
     printf("All Star destructed:\n\n");
     
     printf("\n");
