@@ -74,13 +74,14 @@ struct node* remove_node(struct node* head, int i) {
   return head;
 }
 
-struct node* free_list(struct node* head) {
-    
-  if(head)
-    for (struct node* i = head -> next; i; i = i->next) {
+struct node* free_list(struct node* head){ 
+  if(head){
+    struct node* i = head->next;
+    for (;i; i = i->next) {
       free(head);
       head = i;
     }
+  }
   return head;
 }
 
