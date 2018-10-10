@@ -13,7 +13,7 @@ int main(){
     }
     print_list(root);
     printf("destructing\n\n");
-    printf("%p\n",free_list(root));
+    printf("%p\n",(void*)free_list(root));
     
     printf("All Star:\n");
     struct node* ll1 = NULL;
@@ -28,7 +28,7 @@ int main(){
 
     printf("de-structing All Star:\n");
     
-    printf("%p\n",free_list(ll1));
+    printf("%p\n",(void*)free_list(ll1));
     printf("All Star destructed:\n\n");
     
     printf("\n");
